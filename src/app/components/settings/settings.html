@@ -1,0 +1,180 @@
+<div class="settings-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">⚙️</span>
+        <span class="logo-text">Tempo Kids</span>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#" class="nav-link" (click)="goToDashboard()">Painel</a>
+        <a href="#" class="nav-link">Relatórios</a>
+        <a href="#" class="nav-link active">Configurações</a>
+      </nav>
+      <div class="user-avatar">
+        <div class="avatar-placeholder" style="background-color: #696969;">
+          P
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="settings-content">
+      <h1 class="page-title">Configurações</h1>
+      
+      <div class="settings-sections">
+        <!-- Perfil do Usuário -->
+        <div class="settings-section">
+          <h2 class="section-title">Perfil do Usuário</h2>
+          <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()" class="settings-form">
+            <div class="form-group">
+              <label for="userName" class="form-label">Nome</label>
+              <input 
+                type="text" 
+                id="userName" 
+                formControlName="userName"
+                class="form-input"
+                placeholder="Seu nome completo"
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="userEmail" class="form-label">E-mail</label>
+              <input 
+                type="email" 
+                id="userEmail" 
+                formControlName="userEmail"
+                class="form-input"
+                placeholder="Seu e-mail"
+              >
+            </div>
+            
+            <button type="submit" class="save-button">Salvar Perfil</button>
+          </form>
+        </div>
+
+        <!-- Configurações de Notificação -->
+        <div class="settings-section">
+          <h2 class="section-title">Notificações</h2>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input 
+                type="checkbox" 
+                id="emailNotifications" 
+                formControlName="emailNotifications"
+                class="checkbox-input"
+              >
+              <label for="emailNotifications" class="checkbox-label">
+                Receber notificações por e-mail
+              </label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input 
+                type="checkbox" 
+                id="timeLimitAlerts" 
+                formControlName="timeLimitAlerts"
+                class="checkbox-input"
+              >
+              <label for="timeLimitAlerts" class="checkbox-label">
+                Alertas de tempo limite
+              </label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input 
+                type="checkbox" 
+                id="dailyReports" 
+                formControlName="dailyReports"
+                class="checkbox-input"
+              >
+              <label for="dailyReports" class="checkbox-label">
+                Relatórios diários
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Configurações de Tempo -->
+        <div class="settings-section">
+          <h2 class="section-title">Limites de Tempo Padrão</h2>
+          <form [formGroup]="timeForm" (ngSubmit)="onTimeSubmit()" class="settings-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="maxStudyTime" class="form-label">Tempo máximo de estudo (minutos)</label>
+                <input 
+                  type="number" 
+                  id="maxStudyTime" 
+                  formControlName="maxStudyTime"
+                  class="form-input"
+                  min="15"
+                  max="300"
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="maxFunTime" class="form-label">Tempo máximo de diversão (minutos)</label>
+                <input 
+                  type="number" 
+                  id="maxFunTime" 
+                  formControlName="maxFunTime"
+                  class="form-input"
+                  min="15"
+                  max="300"
+                >
+              </div>
+            </div>
+            
+            <button type="submit" class="save-button">Salvar Limites</button>
+          </form>
+        </div>
+
+        <!-- Configurações de Segurança -->
+        <div class="settings-section">
+          <h2 class="section-title">Segurança</h2>
+          <form [formGroup]="securityForm" (ngSubmit)="onSecuritySubmit()" class="settings-form">
+            <div class="form-group">
+              <label for="currentPassword" class="form-label">Senha atual</label>
+              <input 
+                type="password" 
+                id="currentPassword" 
+                formControlName="currentPassword"
+                class="form-input"
+                placeholder="Digite sua senha atual"
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="newPassword" class="form-label">Nova senha</label>
+              <input 
+                type="password" 
+                id="newPassword" 
+                formControlName="newPassword"
+                class="form-input"
+                placeholder="Digite sua nova senha"
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="confirmNewPassword" class="form-label">Confirmar nova senha</label>
+              <input 
+                type="password" 
+                id="confirmNewPassword" 
+                formControlName="confirmNewPassword"
+                class="form-input"
+                placeholder="Confirme sua nova senha"
+              >
+            </div>
+            
+            <button type="submit" class="save-button">Alterar Senha</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

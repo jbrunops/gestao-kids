@@ -1,0 +1,110 @@
+<div class="activity-history-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="user-profile">
+      <div class="profile-avatar">
+        <div class="avatar-placeholder" style="background-color: #FF69B4;">
+          S
+        </div>
+      </div>
+      <div class="profile-info">
+        <h3 class="profile-name">Sophia</h3>
+        <p class="profile-id">ID: 12345</p>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-text">Visão Geral</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">✅</span>
+        <span class="nav-text">Tarefas</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🎁</span>
+        <span class="nav-text">Recompensas</span>
+      </a>
+      <a href="#" class="nav-item active">
+        <span class="nav-icon">🕐</span>
+        <span class="nav-text">Histórico</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Configurações</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-header">
+      <h1 class="page-title">Histórico de Atividades</h1>
+      
+      <div class="date-selector">
+        <label for="date" class="date-label">Selecione a Data</label>
+        <input 
+          type="date" 
+          id="date" 
+          [(ngModel)]="selectedDate"
+          (change)="onDateChange()"
+          class="date-input"
+        >
+      </div>
+    </div>
+
+    <div class="activities-table-container">
+      <table class="activities-table">
+        <thead>
+          <tr>
+            <th>Atividade</th>
+            <th>Tipo</th>
+            <th>Duração</th>
+            <th>Hora de Início/Fim</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let activity of activityHistory.activities" class="activity-row">
+            <td class="activity-name">{{ activity.name }}</td>
+            <td>
+              <span class="activity-tag" [ngClass]="getActivityTypeClass(activity.type)">
+                {{ getActivityTypeText(activity.type) }}
+              </span>
+            </td>
+            <td class="activity-duration">{{ activity.duration }}</td>
+            <td class="activity-time">{{ activity.startTime }} - {{ activity.endTime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="summary-section">
+      <h2 class="summary-title">Tempo de Estudo vs. Diversão</h2>
+      
+      <div class="summary-stats">
+        <div class="total-time">
+          <span class="time-value">{{ activityHistory.totalTime }}</span>
+          <span class="daily-change">{{ activityHistory.dailyChange }}</span>
+        </div>
+        
+        <div class="time-bars">
+          <div class="time-bar study-bar">
+            <div class="bar-fill study-fill"></div>
+            <span class="bar-label">Estudo</span>
+          </div>
+          <div class="time-bar fun-bar">
+            <div class="bar-fill fun-fill"></div>
+            <span class="bar-label">Diversão</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-button-container">
+      <button class="back-button" (click)="goBack()">
+        Voltar
+      </button>
+    </div>
+  </div>
+</div>

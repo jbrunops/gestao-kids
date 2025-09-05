@@ -1,0 +1,31 @@
+<div class="profile-selector-container">
+  <div class="illustration-section">
+    <div class="child-illustration">
+      <div class="child-emoji">👶</div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-group">
+      <label for="profile" class="form-label">Selecionar</label>
+      <select 
+        id="profile" 
+        [(ngModel)]="selectedProfile"
+        class="form-select"
+      >
+        <option value="" disabled>Selecione um perfil...</option>
+        <option *ngFor="let profile of profiles" [value]="profile.id">
+          {{ profile.name }}
+        </option>
+      </select>
+    </div>
+
+    <button 
+      class="enter-button" 
+      (click)="onEnter()"
+      [disabled]="!selectedProfile"
+    >
+      Entrar
+    </button>
+  </div>
+</div>

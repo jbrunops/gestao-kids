@@ -1,0 +1,48 @@
+<div class="child-dashboard-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">Tempo Kids</span>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <button class="logout-button" (click)="logout()">
+        Sair
+      </button>
+      <div class="user-avatar">
+        <div class="avatar-placeholder" style="background-color: #32CD32;">
+          C
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="greeting-section">
+      <h1 class="greeting">Olá, {{ childName }}! O que vamos fazer hoje?</h1>
+      <button class="start-activity-button" (click)="startActivity()">
+        Iniciar Atividade
+      </button>
+    </div>
+
+    <div class="activities-section">
+      <h2 class="section-title">Atividades de Hoje</h2>
+      
+      <div class="activities-list">
+        <div *ngFor="let activity of activities" class="activity-item">
+          <div class="activity-icon">
+            <span class="icon">{{ activity.icon }}</span>
+          </div>
+          <div class="activity-info">
+            <h3 class="activity-name">{{ activity.name }}</h3>
+            <p class="activity-duration">{{ activity.duration }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
