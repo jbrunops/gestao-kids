@@ -1,0 +1,80 @@
+<div class="register-container">
+  <div class="register-header">
+    <h1 class="app-title">Gestão Kids</h1>
+  </div>
+  
+  <div class="register-form-container">
+    <h2 class="register-title">Criar conta</h2>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      <div class="form-group">
+        <label for="name" class="form-label">Nome completo</label>
+        <input 
+          type="text" 
+          id="name" 
+          formControlName="name"
+          class="form-input"
+          placeholder="Seu nome completo"
+        >
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error-message">
+          O nome deve ter pelo menos 2 caracteres
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email" class="form-label">E-mail</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email"
+          class="form-input"
+          placeholder="Seu e-mail"
+        >
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+          Por favor, insira um e-mail válido
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password" class="form-label">Senha</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password"
+          class="form-input"
+          placeholder="Crie uma senha"
+        >
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+          A senha deve ter pelo menos 6 caracteres
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">Confirmar senha</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          formControlName="confirmPassword"
+          class="form-input"
+          placeholder="Confirme sua senha"
+        >
+        <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="error-message">
+          As senhas devem ser iguais
+        </div>
+      </div>
+      
+      <button 
+        type="submit" 
+        class="register-button"
+        [disabled]="registerForm.invalid"
+      >
+        Criar conta
+      </button>
+    </form>
+    
+    <div class="login-link">
+      <span>Já tem uma conta? </span>
+      <a href="#" (click)="goToLogin()" class="login-text">Faça login</a>
+    </div>
+  </div>
+</div>

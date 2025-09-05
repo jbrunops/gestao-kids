@@ -30,7 +30,6 @@ export class LoginComponent {
   }
 
   goToRegister() {
-    // TODO: Implementar navegação para registro
-    console.log('Navigate to register');
+    this.router.navigate(['/register']);
   }
 }
