@@ -16,7 +16,6 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router
   ) {
-    // Configuração do formulário reativo com validações
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -25,9 +24,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      // TODO: Implementar chamada para API de login
       console.log('Login data:', this.loginForm.value);
-      // Por enquanto, simula login bem-sucedido e redireciona
       this.router.navigate(['/dashboard']);
     }
   }

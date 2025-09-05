@@ -4,11 +4,11 @@ Sistema de controle de tempo de tela para crianças desenvolvido em Angular 17+ 
 
 ## Sobre o Projeto
 
-Este projeto foi desenvolvido como parte do meu aprendizado em Angular e demonstra minhas habilidades em:
-- Desenvolvimento frontend com Angular
-- Implementação de designs do Figma
-- Criação de interfaces responsivas
-- Organização de código e componentes
+Sistema de controle de tempo de tela para crianças desenvolvido com foco em:
+- Interface intuitiva e responsiva
+- Implementação fiel ao design do Figma
+- Arquitetura escalável e manutenível
+- Integração preparada para backend Java
 
 ## Estrutura do Projeto
 
@@ -156,8 +156,8 @@ Para executar o projeto localmente:
 3. Execute em modo desenvolvimento: `ng serve`
 4. Acesse `http://localhost:4200`
 
-## Contato
+## Desenvolvedor
 
-Desenvolvido por João Bruno - Candidato a vaga de Desenvolvedor Júnior/Estagiário
+Jackson Porciúncula
 
-Este projeto demonstra minhas habilidades em Angular, TypeScript e desenvolvimento frontend responsivo.
+Projeto desenvolvido em Angular 17+ com TypeScript e SCSS para interface responsiva.
