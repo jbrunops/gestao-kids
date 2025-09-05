@@ -149,11 +149,15 @@ POST /api/activities
 
 ## Desenvolvimento
 
-Para contribuir com o projeto:
+Para executar o projeto localmente:
 
 1. Clone o repositório
 2. Instale as dependências: `npm install`
 3. Execute em modo desenvolvimento: `ng serve`
-4. Faça suas alterações
-5. Teste a compilação: `ng build`
-6. Faça commit das alterações
+4. Acesse `http://localhost:4200`
+
+## Contato
+
+Desenvolvido por João Bruno - Candidato a vaga de Desenvolvedor Júnior/Estagiário
+
+Este projeto demonstra minhas habilidades em Angular, TypeScript e desenvolvimento frontend responsivo.
