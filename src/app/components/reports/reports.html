@@ -1,0 +1,185 @@
+<div class="reports-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">Tempo Kids</span>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#" class="nav-link" (click)="goToDashboard()">Painel</a>
+        <a href="#" class="nav-link active">Relatórios</a>
+        <a href="#" class="nav-link" (click)="goToSettings()">Configurações</a>
+      </nav>
+      <div class="user-avatar">
+        <div class="avatar-placeholder" style="background-color: #696969;">
+          P
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="reports-content">
+      <h1 class="page-title">Relatórios e Estatísticas</h1>
+      
+      <!-- Filtros -->
+      <div class="filters-section">
+        <div class="filter-group">
+          <label for="childSelect" class="filter-label">Criança</label>
+          <select id="childSelect" [(ngModel)]="selectedChild" (change)="onChildChange()" class="filter-select">
+            <option value="">Todas as crianças</option>
+            <option *ngFor="let child of children" [value]="child.id">{{ child.name }}</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="periodSelect" class="filter-label">Período</label>
+          <select id="periodSelect" [(ngModel)]="selectedPeriod" (change)="onPeriodChange()" class="filter-select">
+            <option value="week">Última semana</option>
+            <option value="month">Último mês</option>
+            <option value="quarter">Últimos 3 meses</option>
+            <option value="year">Último ano</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="dateFrom" class="filter-label">Data inicial</label>
+          <input type="date" id="dateFrom" [(ngModel)]="dateFrom" (change)="onDateChange()" class="filter-input">
+        </div>
+        
+        <div class="filter-group">
+          <label for="dateTo" class="filter-label">Data final</label>
+          <input type="date" id="dateTo" [(ngModel)]="dateTo" (change)="onDateChange()" class="filter-input">
+        </div>
+      </div>
+
+      <!-- Cards de Resumo -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="card-icon study-icon">📚</div>
+          <div class="card-content">
+            <h3 class="card-title">Tempo de Estudo</h3>
+            <p class="card-value">{{ summaryData.totalStudyTime }}</p>
+            <p class="card-change positive">+{{ summaryData.studyChange }}% vs período anterior</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="card-icon fun-icon">🎮</div>
+          <div class="card-content">
+            <h3 class="card-title">Tempo de Diversão</h3>
+            <p class="card-value">{{ summaryData.totalFunTime }}</p>
+            <p class="card-change negative">-{{ summaryData.funChange }}% vs período anterior</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="card-icon total-icon">⏱️</div>
+          <div class="card-content">
+            <h3 class="card-title">Tempo Total</h3>
+            <p class="card-value">{{ summaryData.totalTime }}</p>
+            <p class="card-change neutral">{{ summaryData.totalChange }}% vs período anterior</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="card-icon activities-icon">✅</div>
+          <div class="card-content">
+            <h3 class="card-title">Atividades Concluídas</h3>
+            <p class="card-value">{{ summaryData.completedActivities }}</p>
+            <p class="card-change positive">+{{ summaryData.activitiesChange }}% vs período anterior</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="charts-section">
+        <div class="chart-container">
+          <h2 class="chart-title">Distribuição de Tempo por Dia</h2>
+          <div class="chart-placeholder">
+            <div class="chart-bars">
+              <div *ngFor="let day of weeklyData" class="chart-bar">
+                <div class="bar-label">{{ day.day }}</div>
+                <div class="bar-container">
+                  <div class="bar study-bar" [style.height.%]="day.studyPercentage"></div>
+                  <div class="bar fun-bar" [style.height.%]="day.funPercentage"></div>
+                </div>
+                <div class="bar-value">{{ day.totalTime }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <h2 class="chart-title">Atividades Mais Realizadas</h2>
+          <div class="chart-placeholder">
+            <div class="activities-list">
+              <div *ngFor="let activity of topActivities" class="activity-item">
+                <div class="activity-icon">{{ activity.icon }}</div>
+                <div class="activity-info">
+                  <span class="activity-name">{{ activity.name }}</span>
+                  <span class="activity-count">{{ activity.count }} vezes</span>
+                </div>
+                <div class="activity-bar">
+                  <div class="activity-progress" [style.width.%]="activity.percentage"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela Detalhada -->
+      <div class="table-section">
+        <h2 class="section-title">Relatório Detalhado</h2>
+        <div class="table-container">
+          <table class="reports-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Criança</th>
+                <th>Atividade</th>
+                <th>Tipo</th>
+                <th>Duração</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let report of detailedReports" class="report-row">
+                <td class="report-date">{{ report.date }}</td>
+                <td class="report-child">{{ report.childName }}</td>
+                <td class="report-activity">{{ report.activityName }}</td>
+                <td>
+                  <span class="activity-tag" [ngClass]="report.type === 'study' ? 'study-tag' : 'fun-tag'">
+                    {{ report.type === 'study' ? 'Estudo' : 'Diversão' }}
+                  </span>
+                </td>
+                <td class="report-duration">{{ report.duration }}</td>
+                <td>
+                  <span class="status-badge" [ngClass]="report.status === 'completed' ? 'completed' : 'incomplete'">
+                    {{ report.status === 'completed' ? 'Concluída' : 'Incompleta' }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="action-buttons">
+        <button class="export-button" (click)="exportReport()">
+          📄 Exportar Relatório
+        </button>
+        <button class="print-button" (click)="printReport()">
+          🖨️ Imprimir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

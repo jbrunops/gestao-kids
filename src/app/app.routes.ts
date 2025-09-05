@@ -10,5 +10,6 @@ export const routes: Routes = [
   { path: 'activity-history', loadComponent: () => import('./components/activity-history/activity-history').then(m => m.ActivityHistoryComponent) },
   { path: 'profile-selector', loadComponent: () => import('./components/profile-selector/profile-selector').then(m => m.ProfileSelectorComponent) },
   { path: 'settings', loadComponent: () => import('./components/settings/settings').then(m => m.SettingsComponent) },
+  { path: 'reports', loadComponent: () => import('./components/reports/reports').then(m => m.ReportsComponent) },
   { path: '**', redirectTo: '/login' }
 ];

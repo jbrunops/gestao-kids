@@ -63,6 +63,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  goToReports() {
+    this.router.navigate(['/reports']);
+  }
+
   goToSettings() {
     this.router.navigate(['/settings']);
   }
