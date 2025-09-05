@@ -24,11 +24,12 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.child-image {
-  width: 100%;
+.child-emoji {
+  font-size: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
 }
 
 .form-section {

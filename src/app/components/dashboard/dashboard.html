@@ -8,7 +8,7 @@
     <nav class="sidebar-nav">
       <a href="#" class="nav-item active">
         <span class="nav-icon">🏠</span>
-        <span class="nav-text">Dashboard</span>
+        <span class="nav-text">Painel</span>
       </a>
       <a href="#" class="nav-item">
         <span class="nav-icon">📊</span>
@@ -33,7 +33,9 @@
     <div class="children-grid">
       <div *ngFor="let child of children" class="child-card">
         <div class="child-avatar">
-          <img [src]="child.avatar" [alt]="child.name" class="avatar-image">
+          <div class="avatar-placeholder" [style.background-color]="getAvatarColor(child.id)">
+            {{ child.name.charAt(0) }}
+          </div>
         </div>
         
         <div class="child-info">

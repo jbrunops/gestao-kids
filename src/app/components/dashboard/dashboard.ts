@@ -68,4 +68,9 @@ export class DashboardComponent implements OnInit {
     // TODO: Implementar logout
     this.router.navigate(['/login']);
   }
+
+  getAvatarColor(childId: number): string {
+    const colors = ['#FF69B4', '#4169E1', '#32CD32', '#FFD700', '#FF6347'];
+    return colors[childId % colors.length];
+  }
 }

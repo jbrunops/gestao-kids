@@ -1,13 +1,13 @@
 <div class="profile-selector-container">
   <div class="illustration-section">
     <div class="child-illustration">
-      <img src="assets/illustrations/child-face.svg" alt="Criança" class="child-image">
+      <div class="child-emoji">👶</div>
     </div>
   </div>
 
   <div class="form-section">
     <div class="form-group">
-      <label for="profile" class="form-label">Select</label>
+      <label for="profile" class="form-label">Selecionar</label>
       <select 
         id="profile" 
         [(ngModel)]="selectedProfile"
@@ -25,7 +25,7 @@
       (click)="onEnter()"
       [disabled]="!selectedProfile"
     >
-      Enter
+      Entrar
     </button>
   </div>
 </div>
