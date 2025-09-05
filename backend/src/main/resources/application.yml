@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: gestao-kids-backend
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gestao_kids
+    username: gestao_kids
+    password: gestao_kids123
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  
+  security:
+    jwt:
+      secret: gestao-kids-secret-key-2024
+      expiration: 86400000 # 24 horas
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    com.gestaokids: DEBUG
+    org.springframework.security: DEBUG

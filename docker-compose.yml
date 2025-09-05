@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Banco de dados PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: gestao-kids-db
+    environment:
+      POSTGRES_DB: gestao_kids
+      POSTGRES_USER: gestao_kids
+      POSTGRES_PASSWORD: gestao_kids123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - gestao-kids-network
+
+  # Backend Java Spring Boot
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gestao-kids-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gestao_kids
+      SPRING_DATASOURCE_USERNAME: gestao_kids
+      SPRING_DATASOURCE_PASSWORD: gestao_kids123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - gestao-kids-network
+    volumes:
+      - ./backend:/app
+      - /app/target
+
+  # Frontend Angular
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: gestao-kids-frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - gestao-kids-network
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  gestao-kids-network:
+    driver: bridge
