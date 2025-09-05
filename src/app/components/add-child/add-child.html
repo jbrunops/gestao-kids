@@ -1,0 +1,104 @@
+<div class="add-child-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">TimeWise Kids</span>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#" class="nav-link">Dashboard</a>
+        <a href="#" class="nav-link">Relatórios</a>
+        <a href="#" class="nav-link">Configurações</a>
+      </nav>
+      <div class="user-avatar">
+        <img src="assets/avatars/parent.svg" alt="Usuário" class="avatar-image">
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="form-container">
+      <h1 class="form-title">Adicionar Criança</h1>
+      
+      <form [formGroup]="addChildForm" (ngSubmit)="onSubmit()" class="add-child-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Nome</label>
+          <input 
+            type="text" 
+            id="name" 
+            formControlName="name"
+            class="form-input"
+            placeholder="Nome da Criança"
+          >
+          <div *ngIf="addChildForm.get('name')?.invalid && addChildForm.get('name')?.touched" class="error-message">
+            O nome deve ter pelo menos 2 caracteres
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="age" class="form-label">Idade</label>
+          <input 
+            type="number" 
+            id="age" 
+            formControlName="age"
+            class="form-input"
+            placeholder="Idade da Criança"
+            min="1"
+            max="18"
+          >
+          <div *ngIf="addChildForm.get('age')?.invalid && addChildForm.get('age')?.touched" class="error-message">
+            A idade deve estar entre 1 e 18 anos
+          </div>
+        </div>
+        
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input 
+              type="checkbox" 
+              id="allowStudy" 
+              formControlName="allowStudy"
+              class="checkbox-input"
+            >
+            <label for="allowStudy" class="checkbox-label">
+              Permitir Atividades de Estudo
+            </label>
+          </div>
+          
+          <div class="checkbox-item">
+            <input 
+              type="checkbox" 
+              id="allowFun" 
+              formControlName="allowFun"
+              class="checkbox-input"
+            >
+            <label for="allowFun" class="checkbox-label">
+              Permitir Atividades de Diversão
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button 
+            type="button" 
+            class="cancel-button" 
+            (click)="onCancel()"
+          >
+            Cancelar
+          </button>
+          <button 
+            type="submit" 
+            class="save-button"
+            [disabled]="addChildForm.invalid"
+          >
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
