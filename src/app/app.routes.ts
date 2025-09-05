@@ -9,5 +9,6 @@ export const routes: Routes = [
   { path: 'child-dashboard', loadComponent: () => import('./components/child-dashboard/child-dashboard').then(m => m.ChildDashboardComponent) },
   { path: 'activity-history', loadComponent: () => import('./components/activity-history/activity-history').then(m => m.ActivityHistoryComponent) },
   { path: 'profile-selector', loadComponent: () => import('./components/profile-selector/profile-selector').then(m => m.ProfileSelectorComponent) },
+  { path: 'settings', loadComponent: () => import('./components/settings/settings').then(m => m.SettingsComponent) },
   { path: '**', redirectTo: '/login' }
 ];

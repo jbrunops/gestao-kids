@@ -63,6 +63,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  goToSettings() {
+    this.router.navigate(['/settings']);
+  }
+
   logout() {
     // TODO: Implementar logout
     this.router.navigate(['/login']);
