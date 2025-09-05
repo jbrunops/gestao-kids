@@ -46,6 +46,7 @@ src/app/
 - **Histórico de Atividades**: Relatório detalhado com tabelas e gráficos
 - **Seletor de Perfil**: Tela de seleção de perfil da criança
 - **Configurações**: Gerenciamento de perfil, notificações e limites de tempo
+- **Relatórios**: Análise detalhada com gráficos, estatísticas e filtros avançados
 
 ### Características Técnicas
 - Design responsivo para mobile e desktop
