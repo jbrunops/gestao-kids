@@ -67,6 +67,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/reports']);
   }
 
+  goToTasks() {
+    this.router.navigate(['/tasks']);
+  }
+
   goToSettings() {
     this.router.navigate(['/settings']);
   }
