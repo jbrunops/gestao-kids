@@ -1,12 +1,12 @@
 # Gestão Kids - Frontend Angular
 
-Sistema de controle de tempo de tela para crianças desenvolvido em Angular 17+ com design fiel ao Figma fornecido.
+Sistema de controle de tempo de tela para crianças desenvolvido em Angular 17+.
 
 ## Sobre o Projeto
 
 Sistema de controle de tempo de tela para crianças desenvolvido com foco em:
 - Interface intuitiva e responsiva
-- Implementação fiel ao design do Figma
+- Design moderno e clean
 - Arquitetura escalável e manutenível
 - Integração preparada para backend Java
 
@@ -159,5 +159,3 @@ Para executar o projeto localmente:
 ## Desenvolvedor
 
 Jackson Porciúncula
-
-Projeto desenvolvido em Angular 17+ com TypeScript e SCSS para interface responsiva.
