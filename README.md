@@ -268,11 +268,3 @@ Para dúvidas ou problemas:
 1. Verificar logs: docker-compose logs
 2. Verificar status: docker-compose ps
 3. Rebuild: docker-compose up --build -d
-
-## Licença
-
-Este projeto é de uso interno e educacional.
-
----
-
-Projeto 100% funcional e pronto para uso.
