@@ -1,195 +1,193 @@
 # Gestão Kids - Frontend Angular
 
-Sistema de controle de tempo de tela para crianças desenvolvido em Angular 20+.
+Sistema de controle de tempo de tela para crianças desenvolvido em Angular 17+.
 
-> **Nota**: Este é o frontend do projeto Gestão Kids. Para a documentação completa, veja o [README principal](../README.md).
+## Sobre o Projeto
 
-## 🚀 Tecnologias
+Sistema de controle de tempo de tela para crianças desenvolvido com foco em:
+- Interface intuitiva e responsiva
+- Design moderno e clean
+- Arquitetura escalável e manutenível
+- Integração preparada para backend Java
+
+## Estrutura do Projeto
+
+```
+src/app/
+├── components/           # Componentes da aplicação
+│   ├── login/           # Tela de autenticação
+│   ├── dashboard/       # Dashboard principal dos pais
+│   ├── add-child/       # Formulário de cadastro de criança
+│   ├── child-dashboard/ # Interface da criança
+│   ├── activity-history/# Histórico de atividades
+│   └── profile-selector/# Seletor de perfil
+├── models/              # Interfaces TypeScript
+├── services/            # Serviços para integração com API
+└── assets/              # Recursos estáticos (imagens, ícones)
+```
+
+## Tecnologias
 
 - **Angular 20+** - Framework principal
 - **Angular Material** - Componentes de UI
-- **TypeScript** - Linguagem de programação
 - **SCSS** - Estilização avançada
+- **Reactive Forms** - Validação de formulários
+- **Angular Router** - Navegação com Lazy Loading
+- **TypeScript** - Linguagem de programação
 - **RxJS** - Programação reativa
 - **HTTP Client** - Comunicação com API
 - **Guards** - Proteção de rotas
 - **Interceptors** - Interceptação de requisições HTTP
 
-## 📋 Funcionalidades Implementadas
+## Funcionalidades Implementadas
 
-### ✅ **Sistema de Autenticação**
-- Login com validação e estados de loading
-- Gerenciamento de sessão com JWT
-- Guards de rota para proteção
-- Logout seguro com limpeza de dados
+### Telas Principais
+- **Login**: Autenticação de usuários com validação de formulário
+- **Registro**: Cadastro de novos usuários com validação de senha
+- **Dashboard**: Visualização dos perfis das crianças com estatísticas
+- **Adicionar Criança**: Formulário para cadastro de novos perfis
+- **Dashboard da Criança**: Interface amigável para as crianças
+- **Histórico de Atividades**: Relatório detalhado com tabelas e gráficos
+- **Seletor de Perfil**: Tela de seleção de perfil da criança
+- **Configurações**: Gerenciamento de perfil, notificações e limites de tempo
+- **Relatórios**: Análise detalhada com gráficos, estatísticas e filtros avançados
+- **Tarefas**: Sistema completo de gerenciamento de tarefas com prioridades e status
 
-### ✅ **Dashboard Principal**
-- Visualização de perfis das crianças
-- Estatísticas de tempo de estudo/diversão
-- Ações para gerenciar perfis
-- Interface responsiva e moderna
+### Características Técnicas
+- Design responsivo para mobile e desktop
+- Validação de formulários com mensagens de erro
+- Navegação entre telas com Angular Router
+- Estrutura preparada para integração com backend Java
+- Mock data para demonstração das funcionalidades
+- Componentes reutilizáveis e modulares
 
-### ✅ **Gerenciamento de Crianças**
-- Cadastro de novos perfis
-- Edição de informações
-- Controle de permissões
-- Exclusão de perfis
-
-### ✅ **Sistema de Atividades**
-- Histórico detalhado de atividades
-- Filtros por data e tipo
-- Gráficos de tempo gasto
-- Relatórios estatísticos
-
-### ✅ **Sistema de Tarefas**
-- Criação e gerenciamento de tarefas
-- Prioridades e status
-- Atribuição a crianças
-- Acompanhamento de progresso
-
-### ✅ **Sistema de Recompensas**
-- Criação de recompensas personalizadas
-- Sistema de pontos
-- Categorização por tipo
-- Controle de uso e resgate
-
-## 🛠️ Instalação e Execução
+## Instalação e Execução
 
 ### Pré-requisitos
 - Node.js 18+
 - npm ou yarn
 
-### Instalação
+### Comandos
 ```bash
 # Instalar dependências
 npm install
 
 # Executar em modo desenvolvimento
-npm run start
-# ou
 ng serve
 
 # Compilar para produção
-npm run build
-# ou
-ng build --configuration production
+ng build
+
+# Executar testes
+ng test
 ```
 
-### Scripts Disponíveis
-```bash
-npm run start          # Servidor de desenvolvimento
-npm run build          # Build para produção
-npm run test           # Executar testes
-npm run lint           # Verificar código
-```
+A aplicação estará disponível em `http://localhost:4200`
 
-## 🔧 Configuração
+## Integração com Backend
 
-### Variáveis de Ambiente
-O projeto utiliza diferentes configurações para desenvolvimento e produção:
+O frontend está preparado para integração com APIs REST Java:
 
-- **Desenvolvimento**: `src/environments/environment.ts`
-- **Produção**: `src/environments/environment.prod.ts`
-
-### Configuração da API
-```typescript
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/api',
-  appName: 'Gestão Kids',
-  version: '1.0.0'
-};
-```
-
-## 🏗️ Arquitetura
-
-### Estrutura de Componentes
-```
-src/app/
-├── components/           # Componentes da aplicação
-│   ├── login/           # Autenticação
-│   ├── dashboard/       # Dashboard principal
-│   ├── add-child/       # Cadastro de criança
-│   ├── child-dashboard/ # Interface da criança
-│   ├── activity-history/# Histórico de atividades
-│   ├── tasks/           # Sistema de tarefas
-│   ├── rewards/         # Sistema de recompensas
-│   └── settings/        # Configurações
-├── services/            # Serviços HTTP
-│   ├── auth.ts         # Autenticação
-│   ├── child.ts        # Gerenciamento de crianças
-│   └── activity.ts     # Atividades
-├── guards/              # Guards de rota
-├── interceptors/        # Interceptors HTTP
-├── models/              # Interfaces TypeScript
-└── environments/        # Configurações de ambiente
-```
+### Modelos de Dados
+- `Child`: Perfil da criança com permissões e estatísticas
+- `Activity`: Atividades com categorização (estudo/diversão)
+- `User`: Dados do usuário autenticado
 
 ### Serviços Implementados
-- **`AuthService`**: Autenticação JWT, gerenciamento de sessão
-- **`ChildService`**: CRUD de crianças com estatísticas
-- **`ActivityService`**: Gerenciamento de atividades e relatórios
-- **`AuthInterceptor`**: Adiciona tokens automaticamente
-- **`AuthGuard`**: Protege rotas autenticadas
-
-## 🔗 Integração com Backend
-
-O frontend está preparado para integração com a API Java Spring Boot:
+- **`AuthService`**: Autenticação JWT, gerenciamento de sessão e permissões
+- **`ChildService`**: CRUD completo de perfis de crianças com estatísticas
+- **`ActivityService`**: Gerenciamento de atividades, relatórios e métricas
+- **`AuthInterceptor`**: Interceptação automática de requisições HTTP para tokens
+- **`AuthGuard`**: Proteção de rotas baseada em autenticação
 
 ### Endpoints Esperados
 ```
 POST /api/auth/login
-POST /api/auth/register
 GET  /api/children
 POST /api/children
 GET  /api/activities
 POST /api/activities
-GET  /api/tasks
-POST /api/tasks
 ```
 
-### Tratamento de Erros
-- Fallback para dados mockados quando API não está disponível
-- Mensagens de erro amigáveis para o usuário
-- Estados de loading durante requisições
+## Estrutura de Componentes
 
-## 🧪 Testes
+### Login Component
+- Formulário reativo com validação
+- Redirecionamento após autenticação
+- Tratamento de erros de validação
 
-```bash
-# Executar testes unitários
-npm run test
+### Dashboard Component
+- Listagem de perfis das crianças
+- Estatísticas de tempo de estudo/diversão
+- Ações para visualizar relatórios e excluir perfis
 
-# Executar testes com cobertura
-npm run test:coverage
+### Add Child Component
+- Formulário de cadastro com validações
+- Checkboxes para permissões de atividades
+- Navegação de volta ao dashboard
 
-# Executar testes e2e
-npm run e2e
-```
+### Child Dashboard Component
+- Interface amigável para crianças
+- Lista de atividades do dia
+- Botão para iniciar atividades
 
-## 📦 Build e Deploy
+### Activity History Component
+- Tabela de atividades com filtro por data
+- Gráficos de tempo de estudo vs diversão
+- Sidebar com perfil do usuário
 
-### Build para Produção
-```bash
-ng build --configuration production
-```
+### Profile Selector Component
+- Seleção de perfil da criança
+- Ilustração amigável
+- Dropdown com opções de perfis
 
-### Deploy com Docker
-```bash
-# Build da imagem
-docker build -t gestao-kids-frontend .
+## Estilização
 
-# Executar container
-docker run -p 4200:4200 gestao-kids-frontend
-```
+- SCSS customizado para cada componente
+- Design system baseado no Figma fornecido
+- Cores e tipografia consistentes
+- Layout responsivo com breakpoints mobile-first
+- Componentes visuais idênticos aos mockups
 
-## 🤝 Contribuição
+## Funcionalidades Implementadas Recentemente
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
+### ✅ **Integração com Backend Java**
+- **Serviços HTTP completos**: AuthService, ChildService, ActivityService
+- **Configuração de ambiente**: Desenvolvimento e produção
+- **Interceptor de autenticação**: Gerenciamento automático de tokens JWT
+- **Guards de rota**: Proteção de rotas autenticadas
+- **Tratamento de erros**: Fallback para dados mockados em caso de falha
 
-## 📄 Licença
+### ✅ **Sistema de Autenticação**
+- **Login com validação**: Integração com API de autenticação
+- **Gerenciamento de sessão**: Persistência de usuário e token
+- **Logout seguro**: Limpeza de dados de sessão
+- **Estados de loading**: Indicadores visuais durante requisições
+- **Mensagens de erro**: Feedback claro para o usuário
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](../LICENSE) para mais detalhes.
+### ✅ **Melhorias na Interface**
+- **Loading states**: Spinners e estados de carregamento
+- **Tratamento de erros**: Mensagens de erro amigáveis
+- **Validação aprimorada**: Feedback em tempo real
+- **Responsividade**: Interface adaptável para todos os dispositivos
+
+## Próximos Passos
+
+1. Implementação de testes unitários
+2. Implementação de notificações em tempo real
+3. Otimizações de performance
+4. Implementação de PWA (Progressive Web App)
+5. Adição de métricas e analytics
+
+## Desenvolvimento
+
+Para executar o projeto localmente:
+
+1. Clone o repositório
+2. Instale as dependências: `npm install`
+3. Execute em modo desenvolvimento: `ng serve`
+4. Acesse `http://localhost:4200`
+
+## Desenvolvedor
+
+Jackson Porciúncula
