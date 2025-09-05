@@ -39,11 +39,13 @@ src/app/
 
 ### Telas Principais
 - **Login**: Autenticação de usuários com validação de formulário
+- **Registro**: Cadastro de novos usuários com validação de senha
 - **Dashboard**: Visualização dos perfis das crianças com estatísticas
 - **Adicionar Criança**: Formulário para cadastro de novos perfis
 - **Dashboard da Criança**: Interface amigável para as crianças
 - **Histórico de Atividades**: Relatório detalhado com tabelas e gráficos
 - **Seletor de Perfil**: Tela de seleção de perfil da criança
+- **Configurações**: Gerenciamento de perfil, notificações e limites de tempo
 
 ### Características Técnicas
 - Design responsivo para mobile e desktop
