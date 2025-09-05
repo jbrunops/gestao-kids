@@ -35,12 +35,17 @@
         </div>
       </div>
       
+      <div *ngIf="errorMessage" class="error-message global-error">
+        {{ errorMessage }}
+      </div>
+      
       <button 
         type="submit" 
         class="login-button"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || isLoading"
       >
-        Entrar
+        <span *ngIf="isLoading" class="loading-spinner"></span>
+        {{ isLoading ? 'Entrando...' : 'Entrar' }}
       </button>
     </form>
     

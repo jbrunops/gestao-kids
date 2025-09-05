@@ -1,0 +1,295 @@
+<div class="rewards-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">🎁</span>
+        <span class="logo-text">Tempo Kids</span>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#" class="nav-link" (click)="goToDashboard()">Painel</a>
+        <a href="#" class="nav-link" (click)="goToReports()">Relatórios</a>
+        <a href="#" class="nav-link" (click)="goToTasks()">Tarefas</a>
+        <a href="#" class="nav-link" (click)="goToSettings()">Configurações</a>
+      </nav>
+      <div class="user-avatar">
+        <div class="avatar-placeholder" style="background-color: #696969;">
+          P
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="rewards-content">
+      <div class="page-header">
+        <h1 class="page-title">Sistema de Recompensas</h1>
+        <button class="add-reward-button" (click)="openAddRewardModal()">
+          ➕ Nova Recompensa
+        </button>
+      </div>
+      
+      <!-- Filtros -->
+      <div class="filters-section">
+        <div class="filter-group">
+          <label for="childFilter" class="filter-label">Criança</label>
+          <select id="childFilter" [(ngModel)]="selectedChild" (change)="onChildFilterChange()" class="filter-select">
+            <option value="">Todas as crianças</option>
+            <option *ngFor="let child of children" [value]="child.id">{{ child.name }}</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="statusFilter" class="filter-label">Status</label>
+          <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="onStatusFilterChange()" class="filter-select">
+            <option value="">Todos os status</option>
+            <option value="available">Disponível</option>
+            <option value="earned">Conquistada</option>
+            <option value="redeemed">Resgatada</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="categoryFilter" class="filter-label">Categoria</label>
+          <select id="categoryFilter" [(ngModel)]="selectedCategory" (change)="onCategoryFilterChange()" class="filter-select">
+            <option value="">Todas as categorias</option>
+            <option value="study">Estudo</option>
+            <option value="behavior">Comportamento</option>
+            <option value="chores">Tarefas</option>
+            <option value="special">Especial</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cards de Resumo -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="card-icon points-icon">⭐</div>
+          <div class="card-content">
+            <h3 class="card-title">Pontos Totais</h3>
+            <p class="card-value">{{ totalPoints }}</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="card-icon earned-icon">🏆</div>
+          <div class="card-content">
+            <h3 class="card-title">Recompensas Conquistadas</h3>
+            <p class="card-value">{{ earnedRewards }}</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="card-icon available-icon">🎯</div>
+          <div class="card-content">
+            <h3 class="card-title">Disponíveis</h3>
+            <p class="card-value">{{ availableRewards }}</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="card-icon redeemed-icon">🎁</div>
+          <div class="card-content">
+            <h3 class="card-title">Resgatadas</h3>
+            <p class="card-value">{{ redeemedRewards }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Pontos por Criança -->
+      <div class="points-section">
+        <h2 class="section-title">Pontuação por Criança</h2>
+        <div class="children-points">
+          <div *ngFor="let child of children" class="child-points-card">
+            <div class="child-avatar">
+              <div class="avatar-placeholder" [style.background-color]="getAvatarColor(child.id)">
+                {{ child.name.charAt(0) }}
+              </div>
+            </div>
+            <div class="child-info">
+              <h3 class="child-name">{{ child.name }}</h3>
+              <p class="child-points">{{ getChildPoints(child.id) }} pontos</p>
+            </div>
+            <div class="child-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="getChildProgress(child.id)"></div>
+              </div>
+              <span class="progress-text">{{ getChildProgress(child.id) }}% do objetivo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Recompensas -->
+      <div class="rewards-section">
+        <h2 class="section-title">Recompensas</h2>
+        
+        <div class="rewards-list">
+          <div *ngFor="let reward of filteredRewards" class="reward-card" [ngClass]="getRewardCardClass(reward)">
+            <div class="reward-header">
+              <div class="reward-icon">{{ reward.icon }}</div>
+              <div class="reward-info">
+                <h3 class="reward-title">{{ reward.title }}</h3>
+                <p class="reward-description">{{ reward.description }}</p>
+              </div>
+              <div class="reward-points">
+                <span class="points-value">{{ reward.pointsRequired }}</span>
+                <span class="points-label">pontos</span>
+              </div>
+            </div>
+            
+            <div class="reward-content">
+              <div class="reward-details">
+                <div class="reward-category">
+                  <span class="category-label">Categoria:</span>
+                  <span class="category-badge" [ngClass]="'category-' + reward.category">
+                    {{ getCategoryText(reward.category) }}
+                  </span>
+                </div>
+                
+                <div class="reward-status">
+                  <span class="status-label">Status:</span>
+                  <span class="status-badge" [ngClass]="'status-' + reward.status">
+                    {{ getStatusText(reward.status) }}
+                  </span>
+                </div>
+              </div>
+              
+              <div class="reward-actions">
+                <button 
+                  *ngIf="reward.status === 'available' && canAfford(reward)" 
+                  class="action-button earn-button" 
+                  (click)="earnReward(reward)"
+                >
+                  Conquistar
+                </button>
+                <button 
+                  *ngIf="reward.status === 'earned'" 
+                  class="action-button redeem-button" 
+                  (click)="redeemReward(reward)"
+                >
+                  Resgatar
+                </button>
+                <button 
+                  *ngIf="reward.status === 'redeemed'" 
+                  class="action-button disabled-button" 
+                  disabled
+                >
+                  Resgatada
+                </button>
+                <button 
+                  *ngIf="!canAfford(reward) && reward.status === 'available'" 
+                  class="action-button disabled-button" 
+                  disabled
+                >
+                  Pontos insuficientes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Adicionar/Editar Recompensa -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditing ? 'Editar Recompensa' : 'Nova Recompensa' }}</h2>
+        <button class="close-button" (click)="closeModal()">✕</button>
+      </div>
+      
+      <form [formGroup]="rewardForm" (ngSubmit)="onSubmit()" class="modal-form">
+        <div class="form-group">
+          <label for="title" class="form-label">Título</label>
+          <input 
+            type="text" 
+            id="title" 
+            formControlName="title"
+            class="form-input"
+            placeholder="Título da recompensa"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="description" class="form-label">Descrição</label>
+          <textarea 
+            id="description" 
+            formControlName="description"
+            class="form-textarea"
+            placeholder="Descrição da recompensa"
+            rows="3"
+          ></textarea>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="icon" class="form-label">Ícone</label>
+            <select id="icon" formControlName="icon" class="form-select">
+              <option value="🎁">🎁 Presente</option>
+              <option value="🍕">🍕 Pizza</option>
+              <option value="🎮">🎮 Videogame</option>
+              <option value="📚">📚 Livro</option>
+              <option value="🎬">🎬 Filme</option>
+              <option value="🍦">🍦 Sorvete</option>
+              <option value="🎪">🎪 Parque</option>
+              <option value="💰">💰 Dinheiro</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="category" class="form-label">Categoria</label>
+            <select id="category" formControlName="category" class="form-select">
+              <option value="study">Estudo</option>
+              <option value="behavior">Comportamento</option>
+              <option value="chores">Tarefas</option>
+              <option value="special">Especial</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pointsRequired" class="form-label">Pontos Necessários</label>
+            <input 
+              type="number" 
+              id="pointsRequired" 
+              formControlName="pointsRequired"
+              class="form-input"
+              placeholder="100"
+              min="10"
+              max="1000"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label for="maxUses" class="form-label">Máximo de Usos</label>
+            <input 
+              type="number" 
+              id="maxUses" 
+              formControlName="maxUses"
+              class="form-input"
+              placeholder="1"
+              min="1"
+              max="10"
+            >
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="cancel-button" (click)="closeModal()">
+            Cancelar
+          </button>
+          <button type="submit" class="save-button" [disabled]="rewardForm.invalid">
+            {{ isEditing ? 'Atualizar' : 'Criar' }} Recompensa
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

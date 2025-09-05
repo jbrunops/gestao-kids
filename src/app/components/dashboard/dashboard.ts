@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Child } from '../../models/child.model';
+import { AuthService } from '../../services/auth';
+import { ChildService } from '../../services/child';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +13,34 @@ import { Child } from '../../models/child.model';
 })
 export class DashboardComponent implements OnInit {
   children: Child[] = [];
+  currentUser: any = null;
+  isLoading = true;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private childService: ChildService
+  ) {}
 
   ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+    
+    // Carregar dados das crianças do backend
+    this.childService.getAllChildren().subscribe({
+      next: (children) => {
+        this.children = children;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar crianças:', error);
+        // Fallback para dados mockados em caso de erro
+        this.loadMockData();
+        this.isLoading = false;
+      }
+    });
+  }
+
+  private loadMockData() {
     this.children = [
       {
         id: 1,
@@ -59,7 +85,15 @@ export class DashboardComponent implements OnInit {
 
   deleteChild(childId: number) {
     if (confirm('Tem certeza que deseja excluir este perfil?')) {
-      this.children = this.children.filter(child => child.id !== childId);
+      this.childService.deleteChild(childId).subscribe({
+        next: () => {
+          this.children = this.children.filter(child => child.id !== childId);
+        },
+        error: (error) => {
+          console.error('Erro ao excluir criança:', error);
+          alert('Erro ao excluir perfil. Tente novamente.');
+        }
+      });
     }
   }
 
@@ -76,7 +110,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    // TODO: Implementar logout
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 

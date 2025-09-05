@@ -28,12 +28,16 @@ src/app/
 
 ## Tecnologias
 
-- Angular 17+
-- Angular Material
-- SCSS para estilização
-- Reactive Forms
-- Angular Router com Lazy Loading
-- TypeScript
+- **Angular 20+** - Framework principal
+- **Angular Material** - Componentes de UI
+- **SCSS** - Estilização avançada
+- **Reactive Forms** - Validação de formulários
+- **Angular Router** - Navegação com Lazy Loading
+- **TypeScript** - Linguagem de programação
+- **RxJS** - Programação reativa
+- **HTTP Client** - Comunicação com API
+- **Guards** - Proteção de rotas
+- **Interceptors** - Interceptação de requisições HTTP
 
 ## Funcionalidades Implementadas
 
@@ -89,10 +93,12 @@ O frontend está preparado para integração com APIs REST Java:
 - `Activity`: Atividades com categorização (estudo/diversão)
 - `User`: Dados do usuário autenticado
 
-### Serviços Criados
-- `AuthService`: Autenticação e gerenciamento de sessão
-- `ChildService`: CRUD de perfis de crianças
-- `ActivityService`: Gerenciamento de atividades e relatórios
+### Serviços Implementados
+- **`AuthService`**: Autenticação JWT, gerenciamento de sessão e permissões
+- **`ChildService`**: CRUD completo de perfis de crianças com estatísticas
+- **`ActivityService`**: Gerenciamento de atividades, relatórios e métricas
+- **`AuthInterceptor`**: Interceptação automática de requisições HTTP para tokens
+- **`AuthGuard`**: Proteção de rotas baseada em autenticação
 
 ### Endpoints Esperados
 ```
@@ -143,13 +149,35 @@ POST /api/activities
 - Layout responsivo com breakpoints mobile-first
 - Componentes visuais idênticos aos mockups
 
+## Funcionalidades Implementadas Recentemente
+
+### ✅ **Integração com Backend Java**
+- **Serviços HTTP completos**: AuthService, ChildService, ActivityService
+- **Configuração de ambiente**: Desenvolvimento e produção
+- **Interceptor de autenticação**: Gerenciamento automático de tokens JWT
+- **Guards de rota**: Proteção de rotas autenticadas
+- **Tratamento de erros**: Fallback para dados mockados em caso de falha
+
+### ✅ **Sistema de Autenticação**
+- **Login com validação**: Integração com API de autenticação
+- **Gerenciamento de sessão**: Persistência de usuário e token
+- **Logout seguro**: Limpeza de dados de sessão
+- **Estados de loading**: Indicadores visuais durante requisições
+- **Mensagens de erro**: Feedback claro para o usuário
+
+### ✅ **Melhorias na Interface**
+- **Loading states**: Spinners e estados de carregamento
+- **Tratamento de erros**: Mensagens de erro amigáveis
+- **Validação aprimorada**: Feedback em tempo real
+- **Responsividade**: Interface adaptável para todos os dispositivos
+
 ## Próximos Passos
 
-1. Integração com backend Java
-2. Implementação de autenticação JWT
-3. Adição de testes unitários
-4. Implementação de notificações em tempo real
-5. Otimizações de performance
+1. Implementação de testes unitários
+2. Implementação de notificações em tempo real
+3. Otimizações de performance
+4. Implementação de PWA (Progressive Web App)
+5. Adição de métricas e analytics
 
 ## Desenvolvimento
 
