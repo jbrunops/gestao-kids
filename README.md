@@ -47,6 +47,7 @@ src/app/
 - **Seletor de Perfil**: Tela de seleção de perfil da criança
 - **Configurações**: Gerenciamento de perfil, notificações e limites de tempo
 - **Relatórios**: Análise detalhada com gráficos, estatísticas e filtros avançados
+- **Tarefas**: Sistema completo de gerenciamento de tarefas com prioridades e status
 
 ### Características Técnicas
 - Design responsivo para mobile e desktop
