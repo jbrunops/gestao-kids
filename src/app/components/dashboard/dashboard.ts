@@ -12,10 +12,13 @@ import { Child } from '../../models/child.model';
 export class DashboardComponent implements OnInit {
   children: Child[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    // Inicialização do componente dashboard principal
+  }
 
   ngOnInit() {
-    // Mock data - em produção viria do serviço
+    // Dados mockados para demonstração - em produção viria do serviço
+    // TODO: Implementar chamada para API quando o backend estiver pronto
     this.children = [
       {
         id: 1,
@@ -51,6 +54,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addChild() {
+    // Navegação para tela de adicionar criança
     this.router.navigate(['/add-child']);
   }
 
@@ -70,6 +74,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getAvatarColor(childId: number): string {
+    // Função para gerar cores diferentes para cada avatar
+    // Usa módulo para garantir que sempre tenha uma cor válida
     const colors = ['#FF69B4', '#4169E1', '#32CD32', '#FFD700', '#FF6347'];
     return colors[childId % colors.length];
   }

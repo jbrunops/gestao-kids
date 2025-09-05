@@ -2,6 +2,14 @@
 
 Sistema de controle de tempo de tela para crianças desenvolvido em Angular 17+ com design fiel ao Figma fornecido.
 
+## Sobre o Projeto
+
+Este projeto foi desenvolvido como parte do meu aprendizado em Angular e demonstra minhas habilidades em:
+- Desenvolvimento frontend com Angular
+- Implementação de designs do Figma
+- Criação de interfaces responsivas
+- Organização de código e componentes
+
 ## Estrutura do Projeto
 
 ```
